@@ -1,5 +1,10 @@
 #include <bits/stdc++.h>
 
+//Certainly! Here's a step-by-step approach for the "Set Matrix Zeros" problem:
+//1.  Iterate through the matrix and whenever you encounter a zero at position (i, j), mark all non-zero elements in the same row and column with a distinct value, such as -1. You can achieve this by calling a helper function setOnes that marks the non-zero elements in the same row and column as -1.
+//2. After marking all the necessary elements, iterate through the matrix again and replace all the marked -1 values with zeros.
+//By following this approach, you will set the entire row and column to zeros whenever a zero is encountered in the matrix.
+	
 void setOnes(vector<vector<int>> &matrix, int row, int col){
 
 	int rowSize = matrix.size();
