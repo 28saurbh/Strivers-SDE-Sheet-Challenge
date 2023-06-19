@@ -1,117 +1,53 @@
-Node* reverse(Node *head) {
-
-    if(head == NULL) return NULL;
-
-    Node *prev = NULL;
-
-    Node *curr = head;
-
-    Node *nex = NULL;
-
- 
-
-    while(curr) {
-
-        nex = curr->next;
-
-        curr->next = prev;
-
-        prev = curr;
-
-        curr = nex;
-
-    }
-
- 
-
-    return prev;
-
-}
-
- 
-
-Node* removeKthNode(Node* head, int k)
+Node *addTwoNumbers(Node *num1, Node *num2)
 
 {
 
+    Node*start= new Node();
+
+    Node*temp= start;
+
+    int carry= 0;
+
+     while(num1!=NULL || num2!=NULL || carry){
+
+        int sum= 0;
+
+        if(num1!=NULL){
+
+            sum+=num1->data;
+
+            num1= num1->next;
+
+        }
+
  
 
-    Node *temp = head;
+        if (num2 != NULL) {
 
-    int totalNodes = 0;
+          sum += num2->data;
+
+          num2 = num2->next;
+
+        }
 
  
 
-    while(temp) {
+        sum += carry;
 
-        totalNodes++;
+        carry = sum / 10;
+
+ 
+
+        Node *node = new Node(sum % 10);
+
+        temp->next = node;
 
         temp = temp->next;
 
     }
 
- 
-
-    temp = head;
-
- 
-
-    if(totalNodes == k) {
-
-        head = temp->next;
-
-        return head;
-
-    }
-
- 
-
-    head = reverse(head);
-
- 
-
-    temp = head;
-
- 
-
-    int cnt = 1;
-
- 
-
-    if(k == 1) {
-
-        head = temp->next;
-
-        head = reverse(head);
-
-        return head;
-
-    }
-
- 
-
-    while(temp and cnt < k) {
-
-        cnt++;
-
-        temp = temp->next;
-
-    }
-
- 
-
-    temp->data = temp->next->data;
-
-    Node* nex = temp->next;
-
-    temp->next = nex->next;
-
- 
-
-    head = reverse(head);
-
-    return head;
-
- 
+        return start->next;
 
 }
+
+ 
