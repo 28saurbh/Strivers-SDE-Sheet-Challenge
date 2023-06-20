@@ -1,77 +1,67 @@
-Node* merge(Node* a, Node* b){
-
-   Node *it = new Node(0);
-
-   Node *start = it;
+Node* mergeTwoLists(Node* a, Node* b) {
 
     
 
-    while(a && b)
+    Node *temp = new Node(0);
 
-    {
+    Node *res = temp; 
 
-        if(a->data < b->data)
+    
 
-        {
+    while(a != NULL && b != NULL) {
 
-            it->child = a;
+        if(a->data < b->data) {
 
-            it = it->child;
+            temp->child = a; 
 
-            a = a->child;
+            temp = temp->child; 
+
+            a = a->child; 
 
         }
 
-        else{
+        else {
 
-            it->child = b;
+            temp->child = b;
 
-            it = it->child;
+            temp = temp->child; 
 
-            b = b->child;
+            b = b->child; 
 
         }
 
     }
 
- 
+    
 
-    if(a)   it->child = a;
+    if(a) temp->child = a; 
 
-    if(b)   it->child = b;
+    else temp->child = b; 
 
- 
+    
 
-    return start->child;
+    return res -> child; 
+
+    
 
 }
-
- 
 
 Node* flattenLinkedList(Node* head) 
 
 {
 
-    // Write your code here
-
-    if(!head || !head->next)
-
-        return head;
-
-    Node *r1 = head;
-
-    Node *r2 = head->next;
-
-   while(r2){
-
-       r1=merge(r1,r2);
-
-       r2=r2->next;
-
-   }
-
-   return r1;
+    if(head == NULL || head->next == NULL) return head;
 
  
 
+    Node* L2 = flattenLinkedList(head->next);
+
+    head->next = NULL;
+
+    Node* nhead = mergeTwoLists(head, L2);
+
+    return nhead;
+
 }
+
+ 
