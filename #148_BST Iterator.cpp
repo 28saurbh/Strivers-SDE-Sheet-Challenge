@@ -1,0 +1,66 @@
+#include <bits/stdc++.h> 
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this->data = data;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+
+class BSTiterator
+{
+    public: 
+    stack<int> st;
+    void inorder(TreeNode<int>* root)
+    {
+        if(root==NULL)
+        return;
+
+        inorder(root->right);
+        st.push(root->data);
+        inorder(root->left);
+        return;
+    }
+    BSTiterator(TreeNode<int> *root)
+    {
+        // write your code here
+        inorder(root);
+    }
+
+    int next()
+    {
+        // write your code here
+        if(st.empty())
+        return -1;
+        else
+        {
+            int z=st.top();
+            st.pop();
+            return z;
+        } 
+
+    }
+
+    bool hasNext()
+    {
+        // write your code here
+        if(st.empty())
+        return false;
+        else
+        return true;
+    }
+};
+
+
